@@ -65,7 +65,7 @@ export const API_CONFIG = {
     username: "itstheanurag",
   },
   devto: {
-    enabled: true,
+    enabled: false,
     username: "itstheanurag",
   },
 };

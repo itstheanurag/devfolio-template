@@ -1,5 +1,36 @@
 import { API_CONFIG } from "@/data";
-import { Project, BlogPost, PlatformStat } from "@/types";
+import { Project, BlogPost, PlatformStat, ContributionDay } from "@/types";
+
+/**
+ * Fetches GitHub contribution data via a public proxy.
+ */
+export async function getGithubContributions(): Promise<ContributionDay[]> {
+  if (!API_CONFIG.github.enabled) return [];
+
+  const { username } = API_CONFIG.github;
+
+  try {
+    const response = await fetch(
+      `https://github-contributions-api.jogruber.de/v4/${username}?y=last`,
+      { next: { revalidate: 86400 } }, // Cache for 24 hours
+    );
+
+    if (!response.ok) throw new Error("Failed to fetch GitHub contributions");
+
+    const data = await response.json();
+
+    // Transform data to match our ContributionDay interface
+    // API returns { contributions: [ { date, count, level }, ... ] }
+    return data.contributions.map((day: any) => ({
+      date: day.date,
+      count: day.count,
+      level: day.level, // Level is 0-4, which matches our component
+    }));
+  } catch (error) {
+    console.error("GitHub Contributions API Error:", error);
+    return [];
+  }
+}
 
 /**
  * Fetches pinned repositories from GitHub.

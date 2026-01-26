@@ -1,7 +1,5 @@
-"use client";
-
 import React from "react";
-import { PLATFORM_STATS, HEATMAP_DATA } from "@/data";
+import { PLATFORM_STATS, HEATMAP_DATA, API_CONFIG } from "@/data";
 import CornerBorder from "@/components/ui/corner-border";
 import {
   SiLeetcode,
@@ -10,6 +8,7 @@ import {
   SiCodeforces,
   SiGeeksforgeeks,
 } from "react-icons/si";
+import { getLeetCodeStats, getGithubContributions } from "@/utils/api";
 
 const IconMap: Record<string, React.ReactNode> = {
   Code2: <SiLeetcode className="text-[#fbbf24]" size={24} />,
@@ -19,7 +18,30 @@ const IconMap: Record<string, React.ReactNode> = {
   Cpu: <SiGeeksforgeeks className="text-[#22c55e]" size={24} />,
 };
 
-export default function StatsPage() {
+export default async function StatsPage() {
+  const [leetCodeStats, githubContributions] = await Promise.all([
+    getLeetCodeStats(),
+    getGithubContributions(),
+  ]);
+
+  // Use real data if available, otherwise fallback to mock data
+  const contributionData =
+    githubContributions.length > 0 ? githubContributions : HEATMAP_DATA;
+
+  // Filter stats based on API_CONFIG
+  const enabledStats = PLATFORM_STATS.filter((stat) => {
+    const config = API_CONFIG[stat.id as keyof typeof API_CONFIG];
+    return config ? config.enabled : true;
+  });
+
+  // Merge API stats with local stats
+  const displayStats = enabledStats.map((stat) => {
+    if (stat.id === "leetcode" && leetCodeStats) {
+      return leetCodeStats;
+    }
+    return stat;
+  });
+
   return (
     <div className="space-y-12 animate-fade-in">
       <div className="space-y-2">
@@ -35,8 +57,8 @@ export default function StatsPage() {
           contribution_graph
         </h2>
         <CornerBorder className="w-full overflow-x-auto">
-          <div className="flex gap-1 min-w-[800px]">
-            {HEATMAP_DATA.map((day, index) => (
+          <div className="grid grid-rows-7 grid-flow-col gap-1 w-max p-4">
+            {contributionData.map((day, index) => (
               <div
                 key={index}
                 className={`w-3 h-3 rounded-xs flex-shrink-0 transition-colors duration-300 ${
@@ -59,7 +81,7 @@ export default function StatsPage() {
 
       {/* Platform Stats Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {PLATFORM_STATS.map((platform) => (
+        {displayStats.map((platform) => (
           <CornerBorder key={platform.id} className="h-full">
             <div className="flex items-center gap-4 mb-6">
               <div className="p-3 bg-zinc-900 rounded-lg border border-zinc-800">
