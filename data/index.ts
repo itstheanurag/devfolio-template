@@ -1,10 +1,12 @@
 import {
   Project,
   Experience,
+  SocialLink,
   BlogPost,
   Publication,
   GearItem,
-  SocialLink,
+  ContributionDay,
+  PlatformStat,
 } from "@/types";
 
 export const HERO_DATA = {
@@ -171,6 +173,106 @@ export const SOCIALS: SocialLink[] = [
   { name: "LinkedIn", url: "https://linkedin.com", icon: "Linkedin" },
 ];
 
+// Mock data generator for Heatmap
+const generateHeatmapData = (): ContributionDay[] => {
+  const days = 365;
+  const data: ContributionDay[] = [];
+  const now = new Date();
+
+  for (let i = 0; i < days; i++) {
+    const date = new Date(now);
+    date.setDate(date.getDate() - (days - i));
+
+    // Random contribution level biased towards 0-2 for realism, occasional 3-4
+    const rand = Math.random();
+    let level: 0 | 1 | 2 | 3 | 4 = 0;
+    if (rand > 0.9) level = 4;
+    else if (rand > 0.75) level = 3;
+    else if (rand > 0.5) level = 2;
+    else if (rand > 0.2) level = 1;
+
+    data.push({
+      date: date.toISOString().split("T")[0],
+      count: level === 0 ? 0 : Math.floor(Math.random() * 10) + 1,
+      level,
+    });
+  }
+  return data;
+};
+
+export const HEATMAP_DATA = generateHeatmapData();
+
+export const PLATFORM_STATS: PlatformStat[] = [
+  {
+    id: "leetcode",
+    platform: "LeetCode",
+    username: "alexdev",
+    link: "https://leetcode.com",
+    color: "#fbbf24", // amber-400
+    icon: "Code2",
+    stats: [
+      { label: "Ranking", value: "Top 5%" },
+      { label: "Solved", value: 450 },
+      { label: "Easy", value: 120 },
+      { label: "Medium", value: 280 },
+      { label: "Hard", value: 50 },
+    ],
+  },
+  {
+    id: "github",
+    platform: "GitHub",
+    username: "alexdev",
+    link: "https://github.com",
+    color: "#10b981", // emerald-500
+    icon: "Github",
+    stats: [
+      { label: "Followers", value: "1.2k" },
+      { label: "Stars", value: "3.4k" },
+      { label: "Contributions", value: "2,450" },
+      { label: "Pull Requests", value: 140 },
+    ],
+  },
+  {
+    id: "gitlab",
+    platform: "GitLab",
+    username: "alexdev",
+    link: "https://gitlab.com",
+    color: "#f97316", // orange-500
+    icon: "Gitlab",
+    stats: [
+      { label: "Commits", value: "1,200+" },
+      { label: "Projects", value: 25 },
+      { label: "CI/CD Pipelines", value: 450 },
+    ],
+  },
+  {
+    id: "codeforces",
+    platform: "CodeForces",
+    username: "alex_algo",
+    link: "https://codeforces.com",
+    color: "#3b82f6", // blue-500
+    icon: "Terminal",
+    stats: [
+      { label: "Rating", value: 1850 },
+      { label: "Rank", value: "Candidate Master" },
+      { label: "Contests", value: 45 },
+    ],
+  },
+  {
+    id: "gfg",
+    platform: "GeeksForGeeks",
+    username: "alexdev",
+    link: "https://geeksforgeeks.org",
+    color: "#22c55e", // green-500
+    icon: "Cpu",
+    stats: [
+      { label: "Coding Score", value: 1250 },
+      { label: "Problems Solved", value: 300 },
+      { label: "Institute Rank", value: 12 },
+    ],
+  },
+];
+
 export const SYSTEM_PROMPT = `
 You are an AI assistant living inside the portfolio website of Alex Dev.
 Your goal is to answer questions about Alex's professional background, skills, and projects based on the provided context.
@@ -186,4 +288,5 @@ Projects: ${JSON.stringify(PROJECTS)}
 Blog Posts: ${JSON.stringify(BLOG_POSTS)}
 Research/Publications: ${JSON.stringify(PUBLICATIONS)}
 Gear: ${JSON.stringify(GEAR)}
+Platform Stats: ${JSON.stringify(PLATFORM_STATS)}
 `;

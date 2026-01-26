@@ -51,3 +51,19 @@ export interface ChatMessage {
   text: string;
   timestamp: number;
 }
+
+export interface ContributionDay {
+  date: string;
+  count: number;
+  level: 0 | 1 | 2 | 3 | 4; // 0 is empty, 4 is most active
+}
+
+export interface PlatformStat {
+  id: string;
+  platform: string;
+  username: string;
+  link: string;
+  stats: { label: string; value: string | number }[];
+  color: string; // Hex code for brand color
+  icon: string; // Lucide icon name
+}
