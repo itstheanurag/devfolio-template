@@ -1,0 +1,126 @@
+"use client";
+
+import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/utils/cn";
+import { BsGithub, BsTwitter } from "react-icons/bs";
+import { FaLinkedinIn } from "react-icons/fa6";
+import { SOCIALS } from "@/data";
+
+const IconMap: Record<string, React.ReactNode> = {
+  Github: <BsGithub size={18} />,
+  Twitter: <BsTwitter size={18} />,
+  Linkedin: <FaLinkedinIn size={18} />,
+};
+
+const NAV_ITEMS = [
+  "Projects",
+  "Experience",
+  "Stats",
+  "Blog",
+  "Research",
+  "Gear",
+];
+
+const SiteLayout = ({ children }: { children: React.ReactNode }) => {
+  const pathname = usePathname();
+
+  return (
+    <div className="min-h-screen bg-background flex justify-center selection:bg-primary/20 overflow-x-hidden">
+      {/* Background decoration */}
+      <div
+        className="fixed inset-0 pointer-events-none z-[-1]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, #27272a 1px, transparent 0)",
+          backgroundSize: "40px 40px",
+          opacity: 0.2,
+        }}
+      />
+
+      {/* Main frame */}
+      <div className="w-full max-w-6xl min-h-screen flex flex-col border-x border-dashed border-zinc-800 relative bg-zinc-900/10">
+        {/* Decorative patterns */}
+        <div className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 w-24 h-24 hidden xl:flex items-center justify-center opacity-20 pointer-events-none z-50">
+          <div className="font-mono text-zinc-500 text-xs leading-[10px]"></div>
+        </div>
+
+        <div className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 w-24 h-24 hidden xl:flex items-center justify-center opacity-20 pointer-events-none z-50">
+          <div className="font-mono text-zinc-500 text-xs leading-[10px] text-right"></div>
+        </div>
+
+        {/* Header */}
+        <header className="flex flex-col md:flex-row justify-between items-center p-6 md:p-10 gap-6 border-b border-dashed border-zinc-800/50 backdrop-blur-md sticky top-0 z-40 bg-background/90">
+          <Link
+            href="/"
+            className="text-xl font-mono font-bold tracking-tight text-white group"
+          >
+            <span className="text-primary mr-1">&gt;</span>
+            <span className="group-hover:underline decoration-dashed underline-offset-4">
+              dev_folio
+            </span>
+            <span className="animate-blink">_</span>
+          </Link>
+
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:gap-8 text-sm font-medium">
+            {NAV_ITEMS.map((item) => {
+              const href = `/${item.toLowerCase()}`;
+              const active =
+                pathname === href || pathname.startsWith(`${href}/`);
+
+              return (
+                <Link
+                  key={item}
+                  href={href}
+                  className={cn(
+                    "relative transition-colors duration-200 hover:text-primary",
+                    active ? "text-primary" : "text-zinc-400",
+                  )}
+                >
+                  {item}
+                </Link>
+              );
+            })}
+
+            <a
+              href="mailto:hello@example.com"
+              className="text-zinc-400 hover:text-primary transition-colors"
+            >
+              Contact
+            </a>
+          </nav>
+        </header>
+
+        {/* Main */}
+        <main className="flex-1 w-full p-6 md:p-12 max-w-5xl mx-auto">
+          {children}
+        </main>
+
+        {/* Footer */}
+        <footer className="p-8 border-t border-dashed border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500 bg-zinc-950/30">
+          <div className="font-mono">
+            © {new Date().getFullYear()} Built with Next.js & Tailwind
+          </div>
+
+          <div className="flex gap-6">
+            {SOCIALS.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+                aria-label={social.name}
+              >
+                {IconMap[social.icon]}
+              </a>
+            ))}
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
+};
+
+export default SiteLayout;

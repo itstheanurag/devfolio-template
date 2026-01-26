@@ -40,10 +40,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <Image
               src={project.image}
               alt={project.title}
-              className="w-full h-40 object-cover grayscale hover:grayscale-0 transition-all duration-500"
               width={400}
               height={200}
-              priority
+              className="w-full h-40 object-cover grayscale hover:grayscale-0 transition-all duration-500"
               loading="lazy"
               placeholder="blur"
               blurDataURL={project.image}

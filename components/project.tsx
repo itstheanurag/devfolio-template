@@ -1,5 +1,5 @@
 import ProjectCard from "@/components/project-card";
-import { PROJECTS } from "@/data/data";
+import { PROJECTS } from "@/data";
 import { Project } from "@/types";
 
 const Projects: React.FC = () => (
