@@ -1,0 +1,41 @@
+import { BsGithub, BsTwitterX } from "react-icons/bs";
+import { FaLinkedinIn } from "react-icons/fa6";
+import { SiPeerlist } from "react-icons/si";
+
+const IconMap: Record<string, React.ReactNode> = {
+  Github: <BsGithub size={18} />,
+  Twitter: <BsTwitterX size={18} />,
+  Linkedin: <FaLinkedinIn size={18} />,
+  Peerlist: <SiPeerlist size={18} />,
+};
+
+const SOCIALS = [
+  { name: "Github", url: "https://github.com", icon: "Github" },
+  { name: "Twitter", url: "https://twitter.com", icon: "Twitter" },
+  { name: "Linkedin", url: "https://linkedin.com", icon: "Linkedin" },
+  { name: "Peerlist", url: "https://peerlist.io", icon: "Peerlist" },
+];
+
+export default function Footer() {
+  return (
+    <footer className="mt-24 border-t border-dashed border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
+      <div className="font-mono">
+        © {new Date().getFullYear()} Built with React & Tailwind
+      </div>
+      <div className="flex gap-6">
+        {SOCIALS.map((social: { name: string; url: string; icon: string }) => (
+          <a
+            key={social.name}
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-primary transition-colors"
+            aria-label={social.name}
+          >
+            {IconMap[social.icon]}
+          </a>
+        ))}
+      </div>
+    </footer>
+  );
+}
