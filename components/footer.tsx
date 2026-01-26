@@ -9,12 +9,7 @@ const IconMap: Record<string, React.ReactNode> = {
   Peerlist: <SiPeerlist size={18} />,
 };
 
-const SOCIALS = [
-  { name: "Github", url: "https://github.com", icon: "Github" },
-  { name: "Twitter", url: "https://twitter.com", icon: "Twitter" },
-  { name: "Linkedin", url: "https://linkedin.com", icon: "Linkedin" },
-  { name: "Peerlist", url: "https://peerlist.io", icon: "Peerlist" },
-];
+import { SOCIAL_LINKS } from "@/data";
 
 export default function Footer() {
   return (
@@ -23,7 +18,7 @@ export default function Footer() {
         © {new Date().getFullYear()} Built with React & Tailwind
       </div>
       <div className="flex gap-6">
-        {SOCIALS.map((social: { name: string; url: string; icon: string }) => (
+        {SOCIAL_LINKS.map((social) => (
           <a
             key={social.name}
             href={social.url}

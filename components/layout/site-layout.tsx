@@ -1,11 +1,10 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { BsGithub, BsTwitter } from "react-icons/bs";
 import { FaLinkedinIn } from "react-icons/fa6";
-import { SOCIALS } from "@/data";
 import Navbar from "@/components/navbar";
+import { SOCIAL_LINKS } from "@/data";
 
 const IconMap: Record<string, React.ReactNode> = {
   Github: <BsGithub size={18} />,
@@ -53,7 +52,7 @@ const SiteLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
 
           <div className="flex gap-6">
-            {SOCIALS.map((social) => (
+            {SOCIAL_LINKS.map((social) => (
               <a
                 key={social.name}
                 href={social.url}

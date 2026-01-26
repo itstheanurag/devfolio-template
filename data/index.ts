@@ -1,7 +1,6 @@
 import {
   Project,
   Experience,
-  SocialLink,
   BlogPost,
   Publication,
   GearItem,
@@ -9,9 +8,71 @@ import {
   PlatformStat,
 } from "@/types";
 
+export const SITE_CONFIG = {
+  title: "Gaurav Kunar | Full Stack Engineer",
+  description:
+    "Software Engineer focused on backend systems, distributed architecture, and building reliable products.",
+  url: "https://itstheanurag.vercel.app",
+  socialImage: "/og.png",
+  email: "gauravanurag36@gmail.com",
+};
+
+export const NAV_ITEMS = [
+  { label: "Projects", href: "/projects" },
+  { label: "Experience", href: "/experience" },
+  { label: "Stats", href: "/stats" },
+  { label: "Blog", href: "/blog" },
+  // { label: "Research", href: "/research" },
+  // { label: "Gear", href: "/gear" },
+];
+
+export const TECH_STACK = {
+  frontend: {
+    title: "Frontend",
+    items: [
+      "React / Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "WebGL / Three.js",
+    ],
+  },
+  backend: {
+    title: "Backend",
+    items: ["Node.js", "Go", "PostgreSQL", "Redis"],
+  },
+  tools: {
+    title: "Tools",
+    items: ["Docker", "AWS / GCP", "Git", "Figma"],
+  },
+  ai: {
+    title: "AI / ML",
+    items: ["Google Gemini API", "TensorFlow.js", "LangChain"],
+  },
+};
+
+export const API_CONFIG = {
+  github: {
+    enabled: true,
+    username: "itstheanurag",
+    token: process.env.GITHUB_TOKEN,
+  },
+  leetcode: {
+    enabled: true,
+    username: "itstheanurag",
+  },
+  medium: {
+    enabled: false,
+    username: "itstheanurag",
+  },
+  devto: {
+    enabled: true,
+    username: "itstheanurag",
+  },
+};
+
 export const HERO_DATA = {
-  name: "Alex Dev",
-  role: "Senior Full-Stack Engineer",
+  name: "Gaurav Kumar",
+  role: "Software developer",
   tagline: "Building scalable interfaces and robust backend systems.",
   about:
     "I'm a software engineer focused on building high-quality, accessible, and performant web applications. I prefer shipping code over tweaking pixels, but I appreciate a good dashed border.",
@@ -19,69 +80,83 @@ export const HERO_DATA = {
 
 export const PROJECTS: Project[] = [
   {
-    id: "1",
-    title: "Nebula Stream",
+    id: "hanma-ui",
+    title: "Hanma UI",
     description:
-      "A real-time data visualization dashboard for distributed systems monitoring. Built with high performance in mind using WebSockets and Canvas API.",
-    techStack: ["React", "TypeScript", "Go", "WebSockets"],
-    link: "#",
-    github: "#",
+      "Web interface for the Hanma ecosystem to browse snippets, read documentation, and manage profiles.",
+    techStack: ["Vitejs", "TailwindCss", "TypeScript", "Nodejs", "Npm", "Git"],
+    link: "https://hanma-a2n.pages.dev/",
+    github: "https://github.com/itstheanurag/hanma",
     featured: true,
-    image: "https://picsum.photos/600/400?random=1",
+    image: "/hanma-logo.png",
   },
   {
-    id: "2",
-    title: "Hyper Text Editor",
+    id: "scaffoldor",
+    title: "Scaffoldor",
     description:
-      "A minimal, keyboard-first markdown editor for the web. Supports Vim keybindings and local-first storage.",
-    techStack: ["Next.js", "Rust (WASM)", "Tailwind"],
-    link: "#",
-    github: "#",
+      "Template registry and CLI for sharing GitHub and GitLab templates without messy commit history.",
+    techStack: ["Vitejs", "TailwindCss", "TypeScript", "Nodejs", "Npm", "Git"],
+    link: "https://scaffoldor.vercel.app/",
+    github: "https://github.com/itstheanurag/scaffoldor",
     featured: true,
-    image: "https://picsum.photos/600/400?random=2",
   },
   {
-    id: "3",
-    title: "Gemini CLI",
+    id: "keyway",
+    title: "Keyway",
     description:
-      "A command-line interface wrapper for the Google Gemini API, allowing developers to pipe stdout directly into an LLM for analysis.",
-    techStack: ["Node.js", "Google GenAI SDK"],
-    github: "#",
-    featured: false,
+      "Privacy-first peer-to-peer file sharing using WebRTC with end-to-end encryption.",
+    techStack: [
+      "Nextjs",
+      "TailwindCss",
+      "WebRtc",
+      "TypeScript",
+      "Nodejs",
+      "Npm",
+      "Git",
+    ],
+    link: "https://keyway.onrender.com/",
+    github: "https://github.com/itstheanurag/keyway",
+    featured: true,
+    image: "/keyway.png",
   },
   {
-    id: "4",
-    title: "Voxel Engine",
-    description: "An experimental voxel rendering engine built with WebGPU.",
-    techStack: ["WebGPU", "TypeScript"],
+    id: "bits-and-pieces",
+    title: "Bits & Pieces",
+    description:
+      "Collection of high-quality Next.js components with Tailwind CSS and Framer Motion.",
+    techStack: ["Nextjs", "TailwindCss", "FramerMotion", "React"],
+    link: "https://itstheanurag.github.io/bitsandpieces/",
+    github: "https://github.com/itstheanurag/bitsandpieces",
+    featured: true,
+    image: "/bitsandpieces.png",
+  },
+  {
+    id: "docusage",
+    title: "Docusage",
+    description:
+      "Multi-purpose platform for forms, contracts, invoices, and code management.",
+    techStack: ["Nextjs", "TypeScript", "ShadcnUI"],
+    github: "https://github.com/itstheanurag/docusage",
     featured: false,
   },
 ];
 
 export const EXPERIENCE: Experience[] = [
   {
-    id: "1",
-    company: "TechFlow Systems",
-    role: "Senior Frontend Engineer",
-    period: "2022 - Present",
+    id: "cognitiveclouds-mahalo",
+    company: "CognitiveClouds / Mahalo",
+    role: "Associate Software Engineer",
+    period: "Nov 2022 – Aug 2025",
     description:
-      "Leading the frontend infrastructure team. Improved build times by 40% and migrated the core product to a micro-frontend architecture.",
+      "Developed backend services using NestJS, TypeScript, and PostgreSQL. Built and maintained APIs across CognitiveClouds and its parent company Mahalo. Owned critical backend modules and collaborated closely with frontend and QA teams for smooth releases. Improved service performance through query optimization and caching strategies.",
   },
   {
-    id: "2",
-    company: "StartUp Inc",
-    role: "Full Stack Developer",
-    period: "2019 - 2022",
+    id: "functionup",
+    company: "FunctionUp",
+    role: "Teaching Assistant",
+    period: "Mar 2022 – Oct 2022",
     description:
-      "Early employee. Built the MVP from scratch using React and Node.js. Scaled the platform to 100k+ active users.",
-  },
-  {
-    id: "3",
-    company: "OpenSource Collective",
-    role: "Contributor",
-    period: "2018 - 2019",
-    description:
-      "Active maintainer for several popular UI libraries in the React ecosystem.",
+      "Mentored students in backend development fundamentals. Taught Node.js, JavaScript, and DSA concepts. Supported learners in building REST APIs and full-stack projects.",
   },
 ];
 
@@ -167,10 +242,11 @@ export const GEAR: GearItem[] = [
   },
 ];
 
-export const SOCIALS: SocialLink[] = [
-  { name: "GitHub", url: "https://github.com", icon: "Github" },
+export const SOCIAL_LINKS = [
+  { name: "Github", url: "https://github.com", icon: "Github" },
   { name: "Twitter", url: "https://twitter.com", icon: "Twitter" },
-  { name: "LinkedIn", url: "https://linkedin.com", icon: "Linkedin" },
+  { name: "Linkedin", url: "https://linkedin.com", icon: "Linkedin" },
+  { name: "Peerlist", url: "https://peerlist.io", icon: "Peerlist" },
 ];
 
 // Mock data generator for Heatmap

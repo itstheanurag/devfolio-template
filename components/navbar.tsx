@@ -4,14 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/utils/cn";
 
-const NAV_ITEMS = [
-  "Projects",
-  "Experience",
-  "Stats",
-  "Blog",
-  "Research",
-  "Gear",
-];
+import { NAV_ITEMS } from "@/data";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -31,19 +24,19 @@ const Navbar = () => {
 
       <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 md:gap-8 text-sm font-medium">
         {NAV_ITEMS.map((item) => {
-          const href = `/${item.toLowerCase()}`;
-          const active = pathname === href || pathname.startsWith(`${href}/`);
+          const active =
+            pathname === item.href || pathname.startsWith(`${item.href}/`);
 
           return (
             <Link
-              key={item}
-              href={href}
+              key={item.label}
+              href={item.href}
               className={cn(
                 "relative transition-colors duration-200 hover:text-primary",
                 active ? "text-primary" : "text-zinc-400",
               )}
             >
-              {item}
+              {item.label}
             </Link>
           );
         })}

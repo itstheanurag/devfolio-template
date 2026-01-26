@@ -1,6 +1,6 @@
-// components/home/tech-stack-section.tsx
 import CornerBorder from "@/components/ui/corner-border";
 import { BsCpu } from "react-icons/bs";
+import { TECH_STACK } from "@/data";
 
 const TechStackSection = () => (
   <section>
@@ -11,27 +11,13 @@ const TechStackSection = () => (
 
     <CornerBorder>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-        <StackColumn
-          title="Frontend"
-          items={[
-            "React / Next.js",
-            "TypeScript",
-            "Tailwind CSS",
-            "WebGL / Three.js",
-          ]}
-        />
-        <StackColumn
-          title="Backend"
-          items={["Node.js", "Go", "PostgreSQL", "Redis"]}
-        />
-        <StackColumn
-          title="Tools"
-          items={["Docker", "AWS / GCP", "Git", "Figma"]}
-        />
-        <StackColumn
-          title="AI / ML"
-          items={["Google Gemini API", "TensorFlow.js", "LangChain"]}
-        />
+        {Object.values(TECH_STACK).map((category) => (
+          <StackColumn
+            key={category.title}
+            title={category.title}
+            items={category.items}
+          />
+        ))}
       </div>
     </CornerBorder>
   </section>

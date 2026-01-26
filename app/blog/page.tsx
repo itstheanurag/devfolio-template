@@ -1,12 +1,13 @@
-"use client";
-
-import React from "react";
 import { BLOG_POSTS } from "@/data";
 import CornerBorder from "@/components/ui/corner-border";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
+import { getDevToPosts } from "@/utils/api";
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const apiPosts = await getDevToPosts();
+  const displayPosts = apiPosts.length > 0 ? apiPosts : BLOG_POSTS;
+
   return (
     <div className="space-y-8 animate-fade-in">
       <div className="space-y-2">
@@ -18,7 +19,7 @@ export default function BlogPage() {
       </div>
 
       <div className="grid gap-6">
-        {BLOG_POSTS.map((post) => (
+        {displayPosts.map((post) => (
           <Link
             key={post.id}
             href={`/blog/${post.slug}`}
