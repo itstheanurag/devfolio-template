@@ -5,9 +5,9 @@ import { Project, BlogPost, PlatformStat, ContributionDay } from "@/types";
  * Fetches GitHub contribution data via a public proxy.
  */
 export async function getGithubContributions(): Promise<ContributionDay[]> {
-  if (!API_CONFIG.github.enabled) return [];
+  if (!API_CONFIG.integrations.github.enabled) return [];
 
-  const { username } = API_CONFIG.github;
+  const { username } = API_CONFIG.integrations.github;
 
   try {
     const response = await fetch(
@@ -37,9 +37,9 @@ export async function getGithubContributions(): Promise<ContributionDay[]> {
  * Uses the public GitHub API. Rate limits apply if no token is provided.
  */
 export async function getGithubProjects(): Promise<Project[]> {
-  if (!API_CONFIG.github.enabled) return [];
+  if (!API_CONFIG.integrations.github.enabled) return [];
 
-  const { username, token } = API_CONFIG.github;
+  const { username, token } = API_CONFIG.integrations.github;
   const headers: HeadersInit = {
     Accept: "application/vnd.github.v3+json",
   };
@@ -73,82 +73,5 @@ export async function getGithubProjects(): Promise<Project[]> {
   } catch (error) {
     console.error("GitHub API Error:", error);
     return [];
-  }
-}
-
-/**
- * Fetches blog posts from Dev.to API.
- */
-export async function getDevToPosts(): Promise<BlogPost[]> {
-  if (!API_CONFIG.devto.enabled) return [];
-
-  const { username } = API_CONFIG.devto;
-
-  try {
-    const response = await fetch(
-      `https://dev.to/api/articles?username=${username}`,
-      { next: { revalidate: 3600 } },
-    );
-
-    if (!response.ok) throw new Error("Failed to fetch Dev.to posts");
-
-    const posts = await response.json();
-
-    return posts.map((post: any) => ({
-      id: post.id.toString(),
-      title: post.title,
-      summary: post.description,
-      date: new Date(post.published_at).toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      }),
-      readTime: `${post.reading_time_minutes} min read`,
-      slug: post.slug,
-      image: post.cover_image,
-    }));
-  } catch (error) {
-    console.error("Dev.to API Error:", error);
-    return [];
-  }
-}
-
-/**
- * Fetches LeetCode stats (using a public proxy or unofficial API).
- * Note: Direct LeetCode API requires GraphQL and CORS handling.
- * We'll use a popular open-source proxy for this template.
- */
-export async function getLeetCodeStats(): Promise<PlatformStat | null> {
-  if (!API_CONFIG.leetcode.enabled) return null;
-
-  const { username } = API_CONFIG.leetcode;
-
-  try {
-    const response = await fetch(
-      `https://leetcode-stats-api.herokuapp.com/${username}`,
-      { next: { revalidate: 3600 } },
-    );
-
-    const data = await response.json();
-    if (data.status === "error") return null;
-
-    return {
-      id: "leetcode",
-      platform: "LeetCode",
-      username: username,
-      link: `https://leetcode.com/${username}`,
-      color: "#fbbf24",
-      icon: "Code2",
-      stats: [
-        { label: "Ranking", value: data.ranking },
-        { label: "Solved", value: data.totalSolved },
-        { label: "Easy", value: data.easySolved },
-        { label: "Medium", value: data.mediumSolved },
-        { label: "Hard", value: data.hardSolved },
-      ],
-    };
-  } catch (error) {
-    console.error("LeetCode API Error:", error);
-    return null;
   }
 }

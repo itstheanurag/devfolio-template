@@ -24,6 +24,13 @@ export interface BlogPost {
   date: string;
   readTime: string;
   slug: string;
+
+  // optional but useful
+  url?: string;
+  coverImage?: string;
+  tags?: string[];
+  author?: string;
+  source?: "medium" | "devto" | "mdx";
 }
 
 export interface Publication {
