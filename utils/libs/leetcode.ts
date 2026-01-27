@@ -7,9 +7,9 @@ import { PlatformStat } from "@/types";
  * We'll use a popular open-source proxy for this template.
  */
 export async function getLeetCodeStats(): Promise<PlatformStat | null> {
-  if (!API_CONFIG.leetcode.enabled) return null;
+  if (!API_CONFIG.integrations.leetcode.enabled) return null;
 
-  const { username } = API_CONFIG.leetcode;
+  const { username } = API_CONFIG.integrations.leetcode;
 
   try {
     const response = await fetch(
