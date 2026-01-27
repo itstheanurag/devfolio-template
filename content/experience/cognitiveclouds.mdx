@@ -1,0 +1,160 @@
+---
+company: "CognitiveClouds / Mahalo"
+role: "Associate Software Engineer"
+period: "Nov 2022 – Aug 2025"
+title: "Building Production Backends in Healthcare & Research"
+description: "A deep dive into the systems, projects, and responsibilities I handled as a backend engineer working on production healthcare platforms."
+date: "2022-11-01"
+tags: ["backend", "nestjs", "healthcare", "microservices", "production"]
+---
+
+## Introduction
+
+Over the past three years, I’ve worked as a backend engineer building and maintaining production-grade systems in the healthcare and research space. My role went far beyond writing APIs. I was responsible for designing systems, owning workflows end to end, integrating third-party services, and ensuring that what we shipped could survive real-world usage.
+
+This post is a breakdown of the **work-related projects I handled**, the **systems I built**, and the **responsibilities I owned** while working at CognitiveClouds.
+
+---
+
+## Scope of Work
+
+During my time as a Software Engineer at CognitiveClouds (Nov 2022 – Aug 2025), I actively worked on **three major production platforms**, along with several proof-of-concepts and internal modules.
+
+The projects were deployed as consumer-facing healthcare applications and research platforms, each with its own domain complexity, compliance requirements, and operational challenges.
+
+Across these projects, I:
+
+- Designed backend architectures
+- Implemented core business workflows
+- Integrated external services and APIs
+- Worked closely with frontend teams
+- Owned features from design to production deployment
+
+---
+
+## Core Responsibilities
+
+My responsibilities consistently fell into a few key areas:
+
+- Designing and implementing REST APIs used by production web and mobile clients
+- Building time-sensitive workflows using cron jobs, background workers, and pub-sub patterns
+- Integrating third-party services such as payment gateways, healthcare platforms, and analytics tools
+- Handling real-time features using WebSockets
+- Ensuring reliability through error handling, retries, and observability
+- Taking ownership of projects from initial design to deployment
+
+I was often responsible not just for _building_ features, but for ensuring they worked reliably under real usage.
+
+---
+
+## Project 1: Cadence (Research & Telehealth Platform)
+
+Cadence was a research-focused healthcare platform designed to support structured studies and remote patient interaction.
+
+### What I Worked On
+
+I contributed to multiple core modules, including:
+
+- Onboarding flows for participants
+- CMS-style configuration modules for research teams
+- Scheduling systems for sessions and follow-ups
+- Telehealth workflows supporting video calls
+
+Beyond standard CRUD APIs, the platform required **complex, time-driven behavior**. I implemented cron-based workflows to manage reminders, session lifecycles, and participant timelines.
+
+### Notable Integrations
+
+- Video calling infrastructure
+- Audio transcription pipelines
+- Action scoring systems for research analysis
+- BigQuery pipelines for large-scale reporting and analytics
+
+This project required close coordination with analysts and researchers to ensure backend data pipelines aligned with how the data was consumed downstream.
+
+---
+
+## Project 2: SDG (Schweiger) – Therapy Management Platform
+
+The SDG platform focused on supporting multiple therapy programs, including SCIT, SLIT, and OIT.
+
+### System Responsibilities
+
+On this project, I worked on:
+
+- Questionnaire systems for therapy tracking
+- Medication and symptom logging workflows
+- Notification systems for reminders and alerts
+- Real-time chat using WebSockets
+
+### Payments & Automation
+
+A major responsibility was implementing **recurring subscription payments** using the Square API. This involved:
+
+- Handling webhook-driven payment events
+- Managing subscription state transitions
+- Ensuring idempotency and failure recovery
+
+I also built cron-driven reminders and automation to ensure patients stayed on schedule, which was critical to therapy adherence.
+
+### External Integrations
+
+- Integrated ModMed to sync and consume patient data
+- Ensured secure and reliable data exchange between systems
+
+---
+
+## Project 3: Medlinks – Modular Healthcare Backend
+
+Medlinks was a more generalized healthcare backend designed to support multiple roles and data sources.
+
+### Architecture & Access Control
+
+I designed and implemented:
+
+- A modular backend architecture
+- Role-based access control (RBAC) for clinicians, participants, and administrators
+
+This ensured that sensitive data was exposed only to the appropriate users.
+
+### Health Data & Aggregation
+
+I worked on integrations with wearable devices to ingest:
+
+- Glucose data
+- Weight measurements
+- Vital signs
+
+On top of raw ingestion, I built aggregation APIs that allowed clients to query historical health insights in a structured way.
+
+Given the healthcare context, special care was taken around **data handling practices aligned with HIPAA-style requirements**.
+
+---
+
+## Owning Projects End-to-End
+
+Across these platforms, I frequently:
+
+- Led proof-of-concept initiatives
+- Designed system architecture before implementation
+- Took features from initial requirements to production deployment
+- Acted as a backend point-of-contact for frontend teams
+
+This ownership model meant I wasn’t just implementing tickets. I was responsible for how systems behaved in production and how they evolved over time.
+
+---
+
+## Beyond Client Work
+
+In parallel, I also worked on an open-source personal project focused on backend infrastructure. This helped formalize many of the patterns I applied professionally, including:
+
+- Production-ready backend templates
+- Framework-agnostic tooling
+- Emphasis on reliability and maintainability
+
+---
+
+## Closing Thoughts
+
+Working across multiple healthcare and research platforms taught me how backend systems behave under real constraints. Time-sensitive workflows, third-party failures, data compliance, and long-running systems are very different from demo applications.
+
+These projects shaped how I think about backend engineering today: design for failure, own systems end to end, and treat production as a first-class concern.
