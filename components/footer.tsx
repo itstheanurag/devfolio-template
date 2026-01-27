@@ -13,7 +13,7 @@ import { SOCIAL_LINKS } from "@/data";
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-dashed border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
+    <footer className="mt-24 border-t border-dashed border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-foreground/40">
       <div className="font-mono">
         © {new Date().getFullYear()} Built with React & Tailwind
       </div>

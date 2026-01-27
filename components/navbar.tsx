@@ -3,17 +3,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/utils/cn";
+import { NAV_ITEMS, API_CONFIG } from "@/data";
+import { APIConfig } from "@/schema/config";
 
-import { NAV_ITEMS } from "@/data";
+const config = API_CONFIG as unknown as APIConfig;
 
 const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="flex flex-col md:flex-row justify-between items-center p-6 md:p-10 gap-6 border-b border-dashed border-zinc-800/50 backdrop-blur-md sticky top-0 z-40 bg-background/90">
+    <header className="flex flex-col md:flex-row justify-between items-center p-6 md:p-10 gap-6 border-b border-dashed border-border/50 backdrop-blur-md sticky top-0 z-40 bg-background/90 text-foreground">
       <Link
         href="/"
-        className="text-xl font-mono font-bold tracking-tight text-white group"
+        className="text-xl font-mono font-bold tracking-tight group"
       >
         <span className="text-primary mr-1">&gt;</span>
         <span className="group-hover:underline decoration-dashed underline-offset-4">
@@ -33,7 +35,7 @@ const Navbar = () => {
               href={item.href}
               className={cn(
                 "relative transition-colors duration-200 hover:text-primary",
-                active ? "text-primary" : "text-zinc-400",
+                active ? "text-primary" : "text-foreground/40",
               )}
             >
               {item.label}
@@ -42,8 +44,8 @@ const Navbar = () => {
         })}
 
         <a
-          href="mailto:hello@example.com"
-          className="text-zinc-400 hover:text-primary transition-colors"
+          href={`mailto:${config.socials.email.address}`}
+          className="text-foreground/40 hover:text-primary transition-colors"
         >
           Contact
         </a>

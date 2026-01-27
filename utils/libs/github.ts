@@ -12,20 +12,24 @@ export async function getGithubContributions(): Promise<ContributionDay[]> {
   try {
     const response = await fetch(
       `https://github-contributions-api.jogruber.de/v4/${username}?y=last`,
-      { next: { revalidate: 86400 } }, // Cache for 24 hours
+      { next: { revalidate: 86400 } },
     );
 
-    if (!response.ok) throw new Error("Failed to fetch GitHub contributions");
+    if (!response.ok) {
+      throw new Error("Failed to fetch GitHub contributions");
+    }
 
     const data = await response.json();
 
-    // Transform data to match our ContributionDay interface
-    // API returns { contributions: [ { date, count, level }, ... ] }
-    return data.contributions.map((day: any) => ({
-      date: day.date,
-      count: day.count,
-      level: day.level, // Level is 0-4, which matches our component
-    }));
+    let contributions: ContributionDay[] = data.contributions.map(
+      (day: any) => ({
+        date: day.date,
+        count: day.count,
+        level: day.level,
+      }),
+    );
+
+    return contributions;
   } catch (error) {
     console.error("GitHub Contributions API Error:", error);
     return [];
@@ -64,11 +68,14 @@ export async function getGithubProjects(): Promise<Project[]> {
       id: repo.id.toString(),
       title: repo.name,
       description: repo.description,
-      techStack: [repo.language].filter(Boolean), // GitHub only gives primary language in simple list
+      techStack: [repo.language].filter(Boolean),
       link: repo.homepage || repo.html_url,
       github: repo.html_url,
-      featured: false, // We can logic this out later
-      image: `https://opengraph.githubassets.com/1/${username}/${repo.name}`, // Dynamic OG image
+      featured:
+        !repo.fork &&
+        repo.stargazers_count >= 0 &&
+        repo.description?.length > 100,
+      image: `https://opengraph.githubassets.com/1/${username}/${repo.name}`,
     }));
   } catch (error) {
     console.error("GitHub API Error:", error);

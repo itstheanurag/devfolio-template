@@ -13,6 +13,17 @@ const nextConfig: NextConfig = {
         hostname: "picsum.photos",
         pathname: "/**",
       },
+
+      {
+        protocol: "https",
+        hostname: "medium.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "opengraph.githubassets.com",
+        pathname: "/**",
+      },
     ],
   },
 };

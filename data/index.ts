@@ -1,4 +1,8 @@
-import { Experience, Publication, GearItem } from "@/types";
+import { Experience, Publication, GearItem, SocialLink } from "@/types";
+import { API_CONFIG } from "./config";
+import { APIConfig } from "@/schema/config";
+
+const config = API_CONFIG as unknown as APIConfig;
 
 export * from "./config";
 export * from "./projects";
@@ -9,7 +13,7 @@ export const SITE_CONFIG = {
     "Software Engineer focused on backend systems, distributed architecture, and building reliable products.",
   url: "https://itstheanurag.vercel.app",
   socialImage: "/og.png",
-  email: "gauravanurag36@gmail.com",
+  email: config.socials.email.address,
 };
 
 export const NAV_ITEMS = [
@@ -17,8 +21,6 @@ export const NAV_ITEMS = [
   { label: "Experience", href: "/experience" },
   { label: "Stats", href: "/stats" },
   { label: "Blog", href: "/blog" },
-  // { label: "Research", href: "/research" },
-  // { label: "Gear", href: "/gear" },
 ];
 
 export const TECH_STACK = {
@@ -124,9 +126,20 @@ export const GEAR: GearItem[] = [
   },
 ];
 
-export const SOCIAL_LINKS = [
-  { name: "Github", url: "https://github.com", icon: "Github" },
-  { name: "Twitter", url: "https://twitter.com", icon: "Twitter" },
-  { name: "Linkedin", url: "https://linkedin.com", icon: "Linkedin" },
-  { name: "Peerlist", url: "https://peerlist.io", icon: "Peerlist" },
-];
+export const SOCIAL_LINKS: SocialLink[] = Object.entries(config.socials)
+  .filter(
+    ([key, value]) =>
+      key !== "email" &&
+      typeof value === "object" &&
+      value !== null &&
+      "enabled" in value &&
+      value.enabled,
+  )
+  .map(([key, value]) => {
+    const val = value as { username?: string; url?: string };
+    return {
+      name: key.charAt(0).toUpperCase() + key.slice(1),
+      url: val.url || "#",
+      icon: key.charAt(0).toUpperCase() + key.slice(1), // Matches IconMap keys
+    };
+  });
