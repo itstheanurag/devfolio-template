@@ -14,9 +14,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
   // 1. Local (MDX)
   if (config.blogs.mdx.enabled) {
-    const localPosts = await getLocalBlog<BlogPost>(
-      config.blogs.mdx.contentPath,
-    );
+    const localPosts = await getLocalBlog(config.blogs.mdx.contentPath);
     posts.push(...localPosts.map((p) => ({ ...p, source: "mdx" as const })));
   }
 
@@ -37,4 +35,3 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     .filter((v, i, a) => a.findIndex((t) => t.slug === v.slug) === i)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
-
