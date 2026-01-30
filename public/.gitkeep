@@ -1,0 +1,8 @@
+# This file ensures the public folder is tracked by git
+# Add your static assets here:
+# - resume.pdf
+# - favicon.ico
+# - favicon-16x16.png
+# - apple-touch-icon.png
+# - og.png
+# - Project images (hanma-logo.png, keyway.png, bitsandpieces.png, etc.)

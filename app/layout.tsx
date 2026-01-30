@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   ),
 
   title: {
-    default: "Anurag | Software Engineer",
-    template: "%s · Anurag",
+    default: "Gaurav Kumar | Software Engineer",
+    template: "%s · Gaurav Kumar",
   },
 
   description:
@@ -38,15 +38,15 @@ export const metadata: Metadata = {
     "Portfolio",
   ],
 
-  authors: [{ name: "Anurag" }],
-  creator: "Anurag",
+  authors: [{ name: "Gaurav Kumar" }],
+  creator: "Gaurav Kumar",
 
   openGraph: {
-    title: "Anurag | Software Engineer",
+    title: "Gaurav Kumar | Software Engineer",
     description:
       "Backend-focused software engineer building scalable systems, exploring new tech, and shipping meaningful projects.",
-    url: "https://yourdomain.dev",
-    siteName: "Anurag Portfolio",
+    url: "https://gauravkumar.dev",
+    siteName: "Gaurav Kumar Portfolio",
     images: [
       {
         url: "/og.png",
@@ -61,11 +61,11 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Anurag | Software Engineer",
+    title: "Gaurav Kumar | Software Engineer",
     description:
       "Backend engineer exploring systems, building products, and contributing to open source.",
     images: ["/og.png"],
-    creator: "@yourhandle",
+    creator: "@gauravkumar",
   },
 
   robots: {

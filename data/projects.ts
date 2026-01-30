@@ -10,7 +10,7 @@ export const PROJECTS: Project[] = [
     link: "https://hanma-a2n.pages.dev/",
     github: "https://github.com/itstheanurag/hanma",
     featured: true,
-    image: "/hanma-logo.png",
+    // image: "/hanma-logo.png", // Uncomment and add image to public/ folder
   },
   {
     id: "scaffoldor",
@@ -39,7 +39,7 @@ export const PROJECTS: Project[] = [
     link: "https://keyway.onrender.com/",
     github: "https://github.com/itstheanurag/keyway",
     featured: true,
-    image: "/keyway.png",
+    // image: "/keyway.png", // Uncomment and add image to public/ folder
   },
   {
     id: "bits-and-pieces",
@@ -50,7 +50,7 @@ export const PROJECTS: Project[] = [
     link: "https://itstheanurag.github.io/bitsandpieces/",
     github: "https://github.com/itstheanurag/bitsandpieces",
     featured: true,
-    image: "/bitsandpieces.png",
+    // image: "/bitsandpieces.png", // Uncomment and add image to public/ folder
   },
   {
     id: "docusage",

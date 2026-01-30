@@ -77,7 +77,7 @@ export const API_CONFIG = {
 
     email: {
       enabled: true,
-      address: "gaurav@example.com",
+      address: "gaurav@gauravkumar.dev",
     },
   },
 } as const;

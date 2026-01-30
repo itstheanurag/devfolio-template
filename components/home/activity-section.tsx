@@ -34,14 +34,14 @@ const ActivitySection = async () => {
   return (
     <section>
       <div className="flex justify-between items-end mb-4">
-        <h2 className="text-lg font-bold flex items-center gap-2 text-zinc-200">
-          <BiGitBranch className="text-zinc-400" />
+        <h2 className="text-lg font-bold flex items-center gap-2 text-foreground/90">
+          <BiGitBranch className="text-foreground/50" />
           Contribution Activity
         </h2>
 
         <Link
           href="/stats"
-          className="text-sm text-zinc-500 hover:text-primary flex items-center gap-1 group"
+          className="text-sm text-foreground/50 hover:text-primary flex items-center gap-1 group"
         >
           View full stats
           <BsArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -52,17 +52,19 @@ const ActivitySection = async () => {
         <div className="space-y-3">
           {/* Header */}
           <div className="flex justify-between text-sm">
-            <span className="text-zinc-300">
+            <span className="text-foreground/80">
               <span className="text-primary font-bold">
                 {totalContributions.toLocaleString()}
               </span>{" "}
               contributions
             </span>
-            <span className="text-zinc-500 font-mono text-xs">Last year</span>
+            <span className="text-foreground/50 font-mono text-xs">
+              Last year
+            </span>
           </div>
 
           {/* Month labels */}
-          <div className="flex text-xs text-zinc-500 pl-6">
+          <div className="flex text-xs text-foreground/50 pl-6">
             {weeks.map((week, index) => {
               const firstDay = week[0];
               if (!firstDay) return <div key={index} className="w-4" />;
@@ -83,7 +85,7 @@ const ActivitySection = async () => {
           {/* Heatmap */}
           <div className="flex gap-px overflow-x-scroll">
             {/* Weekday labels */}
-            <div className="flex flex-col gap-1 text-xs text-zinc-500 pr-2">
+            <div className="flex flex-col gap-1 text-xs text-foreground/50 pr-2">
               {["Mon", "", "Wed", "", "Fri", "", ""].map((day, i) => (
                 <div key={i} className="h-3 leading-3">
                   {day}
@@ -101,16 +103,16 @@ const ActivitySection = async () => {
                       className={cn(
                         "w-3 h-3 rounded-xs transition-colors duration-300",
                         day.level === 0
-                          ? "bg-zinc-800"
+                          ? "bg-surface"
                           : day.level === 1
-                            ? "bg-emerald-900"
+                            ? "bg-primary/20"
                             : day.level === 2
-                              ? "bg-emerald-700"
+                              ? "bg-primary/40"
                               : day.level === 3
-                                ? "bg-emerald-500"
-                                : "bg-emerald-300",
+                                ? "bg-primary/70"
+                                : "bg-primary",
                         day.date === today &&
-                          "ring-1 ring-primary ring-offset-1 ring-offset-zinc-900",
+                          "ring-1 ring-primary ring-offset-1 ring-offset-background",
                       )}
                       title={`${day.date}: ${day.count} contributions`}
                     />

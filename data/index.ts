@@ -8,10 +8,10 @@ export * from "./config";
 export * from "./projects";
 
 export const SITE_CONFIG = {
-  title: "Gaurav Kunar | Full Stack Engineer",
+  title: "Gaurav Kumar | Software Engineer",
   description:
     "Software Engineer focused on backend systems, distributed architecture, and building reliable products.",
-  url: "https://itstheanurag.vercel.app",
+  url: "https://gauravkumar.dev",
   socialImage: "/og.png",
   email: config.socials.email.address,
 };
@@ -75,24 +75,16 @@ export const EXPERIENCE: Experience[] = [
 ];
 
 export const PUBLICATIONS: Publication[] = [
-  {
-    id: "1",
-    title: "Optimizing State Synchronization in Distributed Web Clients",
-    conference: "IEEE Web Systems Conference",
-    year: "2023",
-    link: "#",
-    description:
-      "Proposed a hybrid approach using CRDTs and Last-Write-Wins for collaborative editing tools.",
-  },
-  {
-    id: "2",
-    title: "Performance Analysis of WASM vs JS in Image Processing",
-    conference: "Journal of Web Engineering",
-    year: "2021",
-    link: "#",
-    description:
-      "Comparative study showing 4x performance gains in specific matrix operations using Rust-generated WASM.",
-  },
+  // Add your publications here or remove this section if not applicable
+  // Example:
+  // {
+  //   id: "1",
+  //   title: "Your Paper Title",
+  //   conference: "Conference Name",
+  //   year: "2024",
+  //   link: "https://doi.org/...",
+  //   description: "Brief description of your research.",
+  // },
 ];
 
 export const GEAR: GearItem[] = [

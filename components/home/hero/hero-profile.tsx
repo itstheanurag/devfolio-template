@@ -66,9 +66,13 @@ const HeroProfile = () => {
             </button>
           </Link>
 
-          <button className="px-5 py-2.5 border border-border text-foreground/80 font-bold text-sm hover:text-primary hover:border-primary transition-colors flex items-center gap-2">
+          <a
+            href="/resume.pdf"
+            download="Gaurav_Kumar_Resume.pdf"
+            className="px-5 py-2.5 border border-border text-foreground/80 font-bold text-sm hover:text-primary hover:border-primary transition-colors flex items-center gap-2"
+          >
             <BiDownload size={16} /> Resume
-          </button>
+          </a>
         </div>
       </div>
 
